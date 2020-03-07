@@ -11,7 +11,10 @@ const functionReducer = (state, action) => {
             ];
         case 'delete_Book':
             return state.filter((book) => book.id !== action.payload)
-
+        case 'edit_book':
+            return state.map(
+                (book) => book.id === action.payload.id ? action.payload : book
+            )
         default:
             return state;
     }
@@ -29,6 +32,18 @@ const addBook = dispatch => {
     }
 }
 
+const editBook = dispatch => {
+    return (title, author, id, callback) => {
+        dispatch(
+            {
+                type: 'edit_book',
+                payload: { title, author, id }
+            }
+        );
+        callback();
+    }
+};
+
 const deleteBook = dispatch => {
 
     return (id) => {
@@ -45,6 +60,6 @@ const deleteBook = dispatch => {
 
 export const { Context, Provider } = createDataContext(
     functionReducer,
-    { addBook, deleteBook },
+    { addBook, editBook, deleteBook },
     []
 )

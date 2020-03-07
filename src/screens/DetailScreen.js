@@ -1,6 +1,8 @@
 import React, {useContext} from 'react'
 import { View, Text, StyleSheet } from 'react-native'
+import { FontAwesome } from '@expo/vector-icons';
 import {Context} from '../context/FunctionContext'
+import {TouchableOpacity} from 'react-native-gesture-handler'
 
 const DetailScreen = ({navigation}) => {
   id = navigation.getParam('id')
@@ -21,6 +23,21 @@ const DetailScreen = ({navigation}) => {
     </View>
   )
 }
+
+DetailScreen.navigationOptions = ({ navigation }) => {
+  id = navigation.getParam('id')
+    return {
+        headerRight: (
+            <TouchableOpacity
+                onPress={() => navigation.navigate('Edit', { id: id } )}
+            >
+                <FontAwesome name='pencil-square-o' size={30} />
+            </TouchableOpacity>
+
+        )
+    }
+}
+
 
 const styles = StyleSheet.create({
   text:{

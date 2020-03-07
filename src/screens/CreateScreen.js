@@ -5,10 +5,6 @@ import InitialFields from '../component/InitialFields';
 
 const CreateScreen = ({ navigation }) => {
     const { addBook } = useContext(Context)
-
-    // const [title, setTitle] = useState('');
-    // const [author, setAuthor] = useState('');
-    // console.log('TITLE :', title, 'AUTHOR :', author)
     return (
        <InitialFields
            headerText = 'Add New Book'

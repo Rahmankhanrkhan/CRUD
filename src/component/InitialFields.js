@@ -4,10 +4,10 @@ import Spacer from './Spacer';
 import { TextInput } from 'react-native-gesture-handler';
 
 
-const InitialFields = ({ navigation, headerText, buttonText,onSubmit }) => {
+const InitialFields = ({ navigation, headerText, buttonText,onSubmit,initialState }) => {
   console.log('Navigation:::',navigation)
-  const [title, setTitle] = useState('');
-  const [author, setAuthor] = useState('');
+  const [title, setTitle] = useState(initialState.title);
+  const [author, setAuthor] = useState(initialState.author);
   console.log('TITLE :', title, 'AUTHOR :', author)
   return (
     <View>
@@ -42,6 +42,13 @@ const InitialFields = ({ navigation, headerText, buttonText,onSubmit }) => {
     </View>
   )
 
+}
+
+InitialFields.defaultProps = {
+    initialState: {
+        title: 're',
+        author: 'de'
+    }
 }
 
 const styles = StyleSheet.create({
